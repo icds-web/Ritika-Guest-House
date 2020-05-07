@@ -1,24 +1,4 @@
-/* =========================================================
- * bootstrap-datepicker.js
- * Repo: https://github.com/eternicode/bootstrap-datepicker/
- * Demo: http://eternicode.github.io/bootstrap-datepicker/
- * Docs: http://bootstrap-datepicker.readthedocs.org/
- * Forked from http://www.eyecon.ro/bootstrap-datepicker
- * =========================================================
- * Started by Stefan Petre; improvements by Andrew Rowls + contributors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ========================================================= */
+
 
 (function($, undefined){
 
@@ -43,8 +23,7 @@
 				return this.slice(i)[0];
 			},
 			contains: function(d){
-				// Array.indexOf is not cross-browser;
-				// $.inArray doesn't work with Dates
+
 				var val = d && d.valueOf();
 				for (var i=0, l=this.length; i < l; i++)
 					if (this[i].valueOf() === val)
@@ -1065,28 +1044,26 @@
 			dir = dir > 0 ? 1 : -1;
 			if (mag === 1){
 				test = dir === -1
-					// If going back one month, make sure month is not current month
-					// (eg, Mar 31 -> Feb 31 == Feb 28, not Mar 02)
+
 					? function(){
 						return new_date.getUTCMonth() === month;
 					}
-					// If going forward one month, make sure month is as expected
-					// (eg, Jan 31 -> Feb 31 == Feb 28, not Mar 02)
+
 					: function(){
 						return new_date.getUTCMonth() !== new_month;
 					};
 				new_month = month + dir;
 				new_date.setUTCMonth(new_month);
-				// Dec -> Jan (12) or Jan -> Dec (-1) -- limit expected date to 0-11
+
 				if (new_month < 0 || new_month > 11)
 					new_month = (new_month + 12) % 12;
 			}
 			else {
-				// For magnitudes >1, move one month at a time...
+
 				for (var i=0; i < mag; i++)
-					// ...which might decrease the day (eg, Jan 31 to Feb 28, etc)...
+
 					new_date = this.moveMonth(new_date, dir);
-				// ...then reset the day, keeping it in the new month
+
 				new_month = new_date.getUTCMonth();
 				new_date.setUTCDate(day);
 				test = function(){
@@ -1274,9 +1251,7 @@
 			});
 		},
 		dateUpdated: function(e){
-			// `this.updating` is a workaround for preventing infinite recursion
-			// between `changeDate` triggering and `setUTCDate` calling.  Until
-			// there is a better mechanism.
+
 			if (this.updating)
 				return;
 			this.updating = true;

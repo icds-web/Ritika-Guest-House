@@ -154,11 +154,6 @@
 }
 
 
-// Select
-//
-// Replaces the browser default select with a custom one, mostly pulled from
-// https://primer.github.io/.
-//
 
 .custom-select {
   display: inline-block;
@@ -184,11 +179,7 @@
     box-shadow: $custom-select-focus-box-shadow;
 
     &::-ms-value {
-      // For visual consistency with other platforms/browsers,
-      // suppress the default white text on blue background highlight given to
-      // the selected option text when the (still closed) <select> receives focus
-      // in IE and (under certain conditions) Edge.
-      // See https://github.com/twbs/bootstrap/issues/19398.
+
       color: $input-color;
       background-color: $input-bg;
     }
